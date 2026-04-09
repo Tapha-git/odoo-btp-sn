@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_btp_budget_root" name="Budgets" parent="btp_senegal.menu_btp_operations" sequence="30"/>
+    <menuitem id="menu_btp_budgets" name="Budgets chantier" parent="menu_btp_budget_root" sequence="10"
+              action="action_btp_budget"/>
+</odoo>

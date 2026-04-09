@@ -1,0 +1,58 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_btp_chantier_admin,btp.chantier admin,model_btp_chantier,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_chantier_directeur,btp.chantier directeur,model_btp_chantier,btp_senegal.group_btp_directeur_tech,1,1,1,1
+access_btp_chantier_ct,btp.chantier ct,model_btp_chantier,btp_senegal.group_btp_conducteur_travaux,1,1,1,0
+access_btp_chantier_chef,btp.chantier chef,model_btp_chantier,btp_senegal.group_btp_chef_chantier,1,1,0,0
+access_btp_chantier_metreur,btp.chantier metreur,model_btp_chantier,btp_senegal.group_btp_metreur,1,0,0,0
+access_btp_chantier_acheteur,btp.chantier acheteur,model_btp_chantier,btp_senegal.group_btp_acheteur,1,0,0,0
+access_btp_chantier_magasinier,btp.chantier magasinier,model_btp_chantier,btp_senegal.group_btp_magasinier,1,0,0,0
+access_btp_chantier_rh,btp.chantier rh,model_btp_chantier,btp_senegal.group_btp_rh,1,0,0,0
+access_btp_chantier_comptable,btp.chantier comptable,model_btp_chantier,btp_senegal.group_btp_comptable,1,0,0,0
+access_btp_chantier_direction,btp.chantier direction,model_btp_chantier,btp_senegal.group_btp_direction,1,0,0,0
+access_btp_chantier_lecteur,btp.chantier lecteur,model_btp_chantier,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_cost_category_admin,btp.cost.category admin,model_btp_cost_category,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_cost_category_read,btp.cost.category read,model_btp_cost_category,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_resource_nature_admin,btp.resource.nature admin,model_btp_resource_nature,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_resource_nature_read,btp.resource.nature read,model_btp_resource_nature,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_geo_zone_admin,btp.geo.zone admin,model_btp_geo_zone,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_geo_zone_read,btp.geo.zone read,model_btp_geo_zone,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_market_type_admin,btp.market.type admin,model_btp_market_type,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_market_type_read,btp.market.type read,model_btp_market_type,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_ouvrage_admin,btp.ouvrage admin,model_btp_ouvrage,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_ouvrage_metreur,btp.ouvrage metreur,model_btp_ouvrage,btp_senegal.group_btp_metreur,1,1,1,0
+access_btp_ouvrage_read,btp.ouvrage read,model_btp_ouvrage,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_ouvrage_version_admin,btp.ouvrage.version admin,model_btp_ouvrage_version,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_ouvrage_version_metreur,btp.ouvrage.version metreur,model_btp_ouvrage_version,btp_senegal.group_btp_metreur,1,1,1,0
+access_btp_ouvrage_version_read,btp.ouvrage.version read,model_btp_ouvrage_version,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_ouvrage_sousdetail_admin,btp.ouvrage.sousdetail admin,model_btp_ouvrage_sousdetail,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_ouvrage_sousdetail_metreur,btp.ouvrage.sousdetail metreur,model_btp_ouvrage_sousdetail,btp_senegal.group_btp_metreur,1,1,1,0
+access_btp_ouvrage_sousdetail_read,btp.ouvrage.sousdetail read,model_btp_ouvrage_sousdetail,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_devis_admin,btp.devis admin,model_btp_devis,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_devis_metreur,btp.devis metreur,model_btp_devis,btp_senegal.group_btp_metreur,1,1,1,0
+access_btp_devis_read,btp.devis read,model_btp_devis,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_devis_line_admin,btp.devis.line admin,model_btp_devis_line,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_devis_line_metreur,btp.devis.line metreur,model_btp_devis_line,btp_senegal.group_btp_metreur,1,1,1,0
+access_btp_devis_line_read,btp.devis.line read,model_btp_devis_line,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_budget_admin,btp.budget admin,model_btp_budget,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_budget_directeur,btp.budget directeur,model_btp_budget,btp_senegal.group_btp_directeur_tech,1,1,1,0
+access_btp_budget_ct,btp.budget ct,model_btp_budget,btp_senegal.group_btp_conducteur_travaux,1,1,1,0
+access_btp_budget_read,btp.budget read,model_btp_budget,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_budget_line_admin,btp.budget.line admin,model_btp_budget_line,btp_senegal.group_btp_admin,1,1,1,1
+access_btp_budget_line_directeur,btp.budget.line directeur,model_btp_budget_line,btp_senegal.group_btp_directeur_tech,1,1,1,0
+access_btp_budget_line_ct,btp.budget.line ct,model_btp_budget_line,btp_senegal.group_btp_conducteur_travaux,1,1,1,0
+access_btp_budget_line_read,btp.budget.line read,model_btp_budget_line,btp_senegal.group_btp_lecteur,1,0,0,0
+
+access_btp_devis_to_budget_wizard,btp.devis.to.budget.wizard,model_btp_devis_to_budget_wizard,btp_senegal.group_btp_metreur,1,0,1,0
+access_btp_devis_to_budget_wizard_admin,btp.devis.to.budget.wizard admin,model_btp_devis_to_budget_wizard,btp_senegal.group_btp_admin,1,0,1,0
+

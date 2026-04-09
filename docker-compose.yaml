@@ -26,10 +26,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./odoo-19.0+e.20260331/odoo/addons:/mnt/extra-addons
-      - ./btp_base:/mnt/extra-addons/btp_base
-      - ./btp_etude_prix:/mnt/extra-addons/btp_etude_prix
-      - ./btp_budget:/mnt/extra-addons/btp_budget
-      - ./btp_suite:/mnt/extra-addons/btp_suite
+      - ./btp_senegal:/mnt/extra-addons/btp_senegal
     restart: unless-stopped
 
 volumes:

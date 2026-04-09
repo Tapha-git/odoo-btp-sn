@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
-    <record id="budget_demo_1" model="btp.budget">
-        <field name="chantier_id" ref="btp_base.chantier_demo_1"/>
-        <field name="type">initial</field>
-        <field name="state">draft</field>
-    </record>
-</odoo>
-

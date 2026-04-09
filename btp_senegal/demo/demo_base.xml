@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Référentiels de base -->
+    <record id="cost_cat_material" model="btp.cost.category">
+        <field name="sequence">10</field>
+        <field name="code">MAT</field>
+        <field name="name">Matériaux</field>
+    </record>
+    <record id="cost_cat_mo" model="btp.cost.category">
+        <field name="sequence">20</field>
+        <field name="code">MO</field>
+        <field name="name">Main-d'œuvre</field>
+    </record>
+    <record id="cost_cat_materiel" model="btp.cost.category">
+        <field name="sequence">30</field>
+        <field name="code">ENG</field>
+        <field name="name">Matériel / Engins</field>
+    </record>
+    <record id="cost_cat_st" model="btp.cost.category">
+        <field name="sequence">40</field>
+        <field name="code">ST</field>
+        <field name="name">Sous-traitance</field>
+    </record>
+
+    <record id="nature_material" model="btp.resource.nature">
+        <field name="sequence">10</field>
+        <field name="code">MAT</field>
+        <field name="name">Matériaux</field>
+        <field name="cost_category_id" ref="btp_senegal.cost_cat_material"/>
+    </record>
+    <record id="nature_mo" model="btp.resource.nature">
+        <field name="sequence">20</field>
+        <field name="code">MO</field>
+        <field name="name">Main-d'œuvre</field>
+        <field name="cost_category_id" ref="btp_senegal.cost_cat_mo"/>
+    </record>
+    <record id="nature_engins" model="btp.resource.nature">
+        <field name="sequence">30</field>
+        <field name="code">ENG</field>
+        <field name="name">Matériel / Engins</field>
+        <field name="cost_category_id" ref="btp_senegal.cost_cat_materiel"/>
+    </record>
+    <record id="nature_st" model="btp.resource.nature">
+        <field name="sequence">40</field>
+        <field name="code">ST</field>
+        <field name="name">Sous-traitance</field>
+        <field name="cost_category_id" ref="btp_senegal.cost_cat_st"/>
+    </record>
+
+    <record id="geo_dakar" model="btp.geo.zone">
+        <field name="code">DK</field>
+        <field name="name">Dakar</field>
+    </record>
+    <record id="market_public" model="btp.market.type">
+        <field name="sequence">10</field>
+        <field name="code">PUB</field>
+        <field name="name">Marché public</field>
+    </record>
+
+    <!-- Partenaires de démo -->
+    <record id="partner_maitre_ouvrage_demo" model="res.partner">
+        <field name="name">Société Immobilière Sénégal (Démo)</field>
+        <field name="is_company">1</field>
+    </record>
+
+    <!-- Chantier de démo -->
+    <record id="chantier_demo_1" model="btp.chantier">
+        <field name="name">Construction Immeuble R+3 - Point E</field>
+        <field name="partner_id" ref="btp_senegal.partner_maitre_ouvrage_demo"/>
+        <field name="geo_zone_id" ref="btp_senegal.geo_dakar"/>
+        <field name="market_type_id" ref="btp_senegal.market_public"/>
+        <field name="amount_contract">250000000</field>
+        <field name="budget_initial">200000000</field>
+        <field name="state">study</field>
+    </record>
+</odoo>
