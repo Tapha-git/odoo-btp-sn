@@ -4,7 +4,7 @@
     "category": "Construction",
     "summary": "Budget initial/révisé et génération depuis devis (DQE)",
     "author": "Votre Société",
-    "license": "LGPL-3",
+    "license": "OPL-1",
     "depends": [
         "btp_base",
         "btp_etude_prix",

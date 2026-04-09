@@ -4,7 +4,7 @@
     "category": "Construction",
     "summary": "Référentiels et objet Chantier (socle BTP)",
     "author": "Votre Société",
-    "license": "LGPL-3",
+    "license": "OPL-1",
     "depends": [
         "mail",
         "analytic",
@@ -22,6 +22,6 @@
     "demo": [
         "demo/demo.xml",
     ],
-    "application": True,
+    "application": False,
     "installable": True,
 }

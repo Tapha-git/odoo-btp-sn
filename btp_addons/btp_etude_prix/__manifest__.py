@@ -4,7 +4,7 @@
     "category": "Construction",
     "summary": "Bibliothèque d'ouvrages, sous-détails, DQE et devis BTP",
     "author": "Votre Société",
-    "license": "LGPL-3",
+    "license": "OPL-1",
     "depends": [
         "btp_base",
         "mail",
