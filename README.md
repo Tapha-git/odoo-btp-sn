@@ -4,9 +4,10 @@ Addons Odoo 19 pour une entreprise BTP au Sénégal (workflow chantier, étude d
 
 ## Addons
 
-- `btp_addons/btp_base`
-- `btp_addons/btp_etude_prix`
-- `btp_addons/btp_budget`
+- `btp_base`
+- `btp_etude_prix`
+- `btp_budget`
+- `btp_suite` (module à publier/vendre sur Odoo Apps)
 
 ## Démarrage (Docker)
 
@@ -19,4 +20,3 @@ Dans Odoo (base `admin`), installe :
 - **BTP - Base**
 - **BTP - Étude de prix**
 - **BTP - Budget chantier**
-
