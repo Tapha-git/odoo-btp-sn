@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Catégories de coûts -->
+    <record id="view_btp_cost_category_tree" model="ir.ui.view">
+        <field name="name">btp.cost.category.tree</field>
+        <field name="model">btp.cost.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_btp_cost_category_form" model="ir.ui.view">
+        <field name="name">btp.cost.category.form</field>
+        <field name="model">btp.cost.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_btp_cost_category" model="ir.actions.act_window">
+        <field name="name">Catégories de coûts</field>
+        <field name="res_model">btp.cost.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Natures de ressources -->
+    <record id="view_btp_resource_nature_tree" model="ir.ui.view">
+        <field name="name">btp.resource.nature.tree</field>
+        <field name="model">btp.resource.nature</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="cost_category_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_btp_resource_nature_form" model="ir.ui.view">
+        <field name="name">btp.resource.nature.form</field>
+        <field name="model">btp.resource.nature</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="cost_category_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_btp_resource_nature" model="ir.actions.act_window">
+        <field name="name">Natures de ressources</field>
+        <field name="res_model">btp.resource.nature</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Zones géographiques -->
+    <record id="view_btp_geo_zone_tree" model="ir.ui.view">
+        <field name="name">btp.geo.zone.tree</field>
+        <field name="model">btp.geo.zone</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_btp_geo_zone_form" model="ir.ui.view">
+        <field name="name">btp.geo.zone.form</field>
+        <field name="model">btp.geo.zone</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_btp_geo_zone" model="ir.actions.act_window">
+        <field name="name">Zones géographiques</field>
+        <field name="res_model">btp.geo.zone</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Types de marchés -->
+    <record id="view_btp_market_type_tree" model="ir.ui.view">
+        <field name="name">btp.market.type.tree</field>
+        <field name="model">btp.market.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_btp_market_type_form" model="ir.ui.view">
+        <field name="name">btp.market.type.form</field>
+        <field name="model">btp.market.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="sequence"/>
+                        <field name="code"/>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_btp_market_type" model="ir.actions.act_window">
+        <field name="name">Types de marchés</field>
+        <field name="res_model">btp.market.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

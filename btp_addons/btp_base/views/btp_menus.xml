@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_btp_root" name="BTP" sequence="10"/>
+
+    <menuitem id="menu_btp_operations" name="Opérations" parent="menu_btp_root" sequence="10"/>
+    <menuitem id="menu_btp_referentiels" name="Référentiels" parent="menu_btp_root" sequence="90"/>
+
+    <menuitem id="menu_btp_chantiers" name="Chantiers" parent="menu_btp_operations" sequence="10"
+              action="action_btp_chantier"/>
+
+    <menuitem id="menu_btp_ref_cost_categories" name="Catégories de coûts" parent="menu_btp_referentiels" sequence="10"
+              action="action_btp_cost_category"/>
+    <menuitem id="menu_btp_ref_resource_natures" name="Natures de ressources" parent="menu_btp_referentiels" sequence="20"
+              action="action_btp_resource_nature"/>
+    <menuitem id="menu_btp_ref_geo_zones" name="Zones géographiques" parent="menu_btp_referentiels" sequence="30"
+              action="action_btp_geo_zone"/>
+    <menuitem id="menu_btp_ref_market_types" name="Types de marchés" parent="menu_btp_referentiels" sequence="40"
+              action="action_btp_market_type"/>
+</odoo>
+

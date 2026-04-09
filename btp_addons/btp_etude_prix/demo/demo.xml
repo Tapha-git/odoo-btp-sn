@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ouvrage_fondations" model="btp.ouvrage">
+        <field name="code">OUV-001</field>
+        <field name="name">Fondations (lot gros œuvre)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_fondations_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_etude_prix.ouvrage_fondations"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">5</field>
+        <field name="overhead_general_pct">7</field>
+        <field name="risk_pct">3</field>
+        <field name="margin_pct">12</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_fondations_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_etude_prix.ouvrage_fondations_v1"/>
+        <field name="resource_nature_id" ref="btp_base.nature_material"/>
+        <field name="name">Ciment + agrégats (estimation)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost">3500000</field>
+    </record>
+    <record id="ouvrage_fondations_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_etude_prix.ouvrage_fondations_v1"/>
+        <field name="resource_nature_id" ref="btp_base.nature_mo"/>
+        <field name="name">Main-d'œuvre (estimation)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost">1200000</field>
+    </record>
+    <record id="ouvrage_fondations_l3" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_etude_prix.ouvrage_fondations_v1"/>
+        <field name="resource_nature_id" ref="btp_base.nature_engins"/>
+        <field name="name">Location engin (estimation)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost">800000</field>
+    </record>
+
+    <record id="devis_demo_1" model="btp.devis">
+        <field name="partner_id" ref="btp_base.partner_maitre_ouvrage_demo"/>
+        <field name="state">draft</field>
+    </record>
+    <record id="devis_demo_1_l1" model="btp.devis.line">
+        <field name="devis_id" ref="btp_etude_prix.devis_demo_1"/>
+        <field name="ouvrage_id" ref="btp_etude_prix.ouvrage_fondations"/>
+        <field name="ouvrage_version_id" ref="btp_etude_prix.ouvrage_fondations_v1"/>
+        <field name="name">Fondations (lot gros œuvre)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+    </record>
+</odoo>

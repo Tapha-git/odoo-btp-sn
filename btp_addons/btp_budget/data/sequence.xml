@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_btp_budget" model="ir.sequence">
+        <field name="name">Budget chantier</field>
+        <field name="code">btp.budget</field>
+        <field name="prefix">BG/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="analytic_plan_chantiers" model="account.analytic.plan">
+        <field name="name">Chantiers</field>
+    </record>
+</odoo>
+

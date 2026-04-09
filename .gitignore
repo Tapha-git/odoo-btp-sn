@@ -1,0 +1,21 @@
+# Odoo sources / distributions (kept outside this repo)
+odoo-19.0+e.20260331/
+
+# Local folders/files in this workspace
+ipres_css_pages/
+liasse_pages/
+*.png
+*.log
+wise_lab_liasse*.txt
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Odoo runtime / data (if ever mounted here)
+odoo-web-data/
+odoo-db-data/
+
+# IDE
+.vscode/

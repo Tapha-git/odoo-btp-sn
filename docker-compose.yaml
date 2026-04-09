@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:15
+    container_name: odoo-db
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  odoo:
+    image: odoo:19
+    container_name: odoo-app
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./odoo-19.0+e.20260331/odoo/addons:/mnt/extra-addons
+      - ./btp_addons/btp_base:/mnt/extra-addons/btp_base
+      - ./btp_addons/btp_etude_prix:/mnt/extra-addons/btp_etude_prix
+      - ./btp_addons/btp_budget:/mnt/extra-addons/btp_budget
+    restart: unless-stopped
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:

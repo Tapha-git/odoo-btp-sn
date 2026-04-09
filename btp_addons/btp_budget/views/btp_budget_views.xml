@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btp_budget_list" model="ir.ui.view">
+        <field name="name">btp.budget.list</field>
+        <field name="model">btp.budget</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'validated'" decoration-muted="state in ('cancel',)">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="chantier_id"/>
+                <field name="type"/>
+                <field name="amount_cost_direct"/>
+                <field name="amount_sale"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_btp_budget_form" model="ir.ui.view">
+        <field name="name">btp.budget.form</field>
+        <field name="model">btp.budget</field>
+        <field name="arch" type="xml">
+            <form string="Budget chantier">
+                <header>
+                    <button name="action_validate" type="object" string="Valider" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Annuler" invisible="state == 'cancel'"/>
+                    <button name="action_reset_to_draft" type="object" string="Remettre en brouillon"
+                            invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,validated,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="type"/>
+                        </group>
+                        <group>
+                            <field name="chantier_id"/>
+                            <field name="devis_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lignes">
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="ouvrage_id"/>
+                                    <field name="name"/>
+                                    <field name="uom_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_cost_direct"/>
+                                    <field name="unit_sale_price"/>
+                                    <field name="subtotal_cost_direct" readonly="1"/>
+                                    <field name="subtotal_sale" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Totaux">
+                            <group>
+                                <field name="amount_cost_direct" readonly="1"/>
+                                <field name="amount_sale" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Chatter">
+                            <field name="message_follower_ids" invisible="1"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btp_budget" model="ir.actions.act_window">
+        <field name="name">Budgets chantier</field>
+        <field name="res_model">btp.budget</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
+

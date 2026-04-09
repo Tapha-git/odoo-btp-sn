@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btp_chantier_tree" model="ir.ui.view">
+        <field name="name">btp.chantier.tree</field>
+        <field name="model">btp.chantier</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'done'" decoration-muted="state in ('cancel',)">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="geo_zone_id"/>
+                <field name="conducteur_travaux_id"/>
+                <field name="chef_chantier_id"/>
+                <field name="amount_contract"/>
+                <field name="progress_rate"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_btp_chantier_search" model="ir.ui.view">
+        <field name="name">btp.chantier.search</field>
+        <field name="model">btp.chantier</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="conducteur_travaux_id"/>
+                <field name="chef_chantier_id"/>
+                <field name="state"/>
+                <filter string="En cours" name="in_progress" domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Clôturés" name="done" domain="[('state', '=', 'done')]"/>
+                <group>
+                    <filter string="Statut" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Conducteur" name="group_ct" context="{'group_by': 'conducteur_travaux_id'}"/>
+                    <filter string="Client" name="group_client" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_btp_chantier_form" model="ir.ui.view">
+        <field name="name">btp.chantier.form</field>
+        <field name="model">btp.chantier</field>
+        <field name="arch" type="xml">
+            <form string="Chantier">
+                <header>
+                    <button name="action_reset_to_draft" type="object" string="Remettre en brouillon"
+                            invisible="state != 'cancel'"/>
+                    <button name="action_set_study" type="object" string="Passer en étude"
+                            invisible="state not in ('draft',)"/>
+                    <button name="action_validate" type="object" string="Valider"
+                            invisible="state not in ('study',)"/>
+                    <button name="action_start" type="object" string="Démarrer"
+                            invisible="state not in ('validated','suspended')"/>
+                    <button name="action_suspend" type="object" string="Suspendre"
+                            invisible="state not in ('in_progress',)"/>
+                    <button name="action_done" type="object" string="Clôturer"
+                            invisible="state not in ('in_progress','suspended')"/>
+                    <button name="action_cancel" type="object" string="Annuler"
+                            invisible="state in ('cancel','done')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,study,validated,in_progress,suspended,done,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" readonly="1"/>
+                            <field name="name" placeholder="Libellé du chantier"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="maitre_oeuvre_id"/>
+                            <field name="bureau_controle_id"/>
+                            <field name="market_type_id"/>
+                        </group>
+                        <group>
+                            <field name="geo_zone_id"/>
+                            <field name="address"/>
+                            <field name="conducteur_travaux_id"/>
+                            <field name="chef_chantier_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Planning">
+                            <group>
+                                <group>
+                                    <field name="date_start_planned"/>
+                                    <field name="date_end_planned"/>
+                                </group>
+                                <group>
+                                    <field name="date_start_actual"/>
+                                    <field name="date_end_actual"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Finances">
+                            <group>
+                                <group>
+                                    <field name="amount_contract"/>
+                                    <field name="budget_initial"/>
+                                    <field name="budget_revised"/>
+                                </group>
+                                <group>
+                                    <field name="progress_rate"/>
+                                    <field name="margin_expected" readonly="1"/>
+                                    <field name="margin_real" readonly="1"/>
+                                </group>
+                            </group>
+                            <group string="Trésorerie">
+                                <field name="cashflow_expected" readonly="1"/>
+                                <field name="cashflow_real" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Intégration Odoo">
+                            <group>
+                                <field name="analytic_account_id" readonly="1"/>
+                                <field name="project_id"/>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="message_follower_ids" invisible="1"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btp_chantier" model="ir.actions.act_window">
+        <field name="name">Chantiers</field>
+        <field name="res_model">btp.chantier</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_btp_chantier_search"/>
+    </record>
+</odoo>

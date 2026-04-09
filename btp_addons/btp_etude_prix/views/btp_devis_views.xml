@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_btp_devis_tree" model="ir.ui.view">
+        <field name="name">btp.devis.tree</field>
+        <field name="model">btp.devis</field>
+        <field name="arch" type="xml">
+            <list decoration-info="state == 'review'" decoration-success="state == 'validated'" decoration-muted="state == 'cancel'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="chantier_id"/>
+                <field name="amount_cost_direct"/>
+                <field name="amount_sale"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_btp_devis_form" model="ir.ui.view">
+        <field name="name">btp.devis.form</field>
+        <field name="model">btp.devis</field>
+        <field name="arch" type="xml">
+            <form string="Devis BTP">
+                <header>
+                    <button name="action_set_review" type="object" string="Soumettre" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_validate" type="object" string="Valider" class="btn-primary"
+                            invisible="state != 'review'" groups="btp_base.group_btp_directeur_tech,btp_base.group_btp_admin"/>
+                    <button name="action_recompute_prices" type="object" string="Recalculer les prix"
+                            invisible="state == 'validated'"/>
+                    <button name="action_cancel" type="object" string="Annuler"
+                            invisible="state == 'cancel'"/>
+                    <button name="action_reset_to_draft" type="object" string="Remettre en brouillon"
+                            invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,review,validated,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="chantier_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="DQE">
+                            <field name="line_ids" readonly="state == 'validated'">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="ouvrage_id"/>
+                                    <field name="ouvrage_version_id"/>
+                                    <field name="name"/>
+                                    <field name="uom_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_cost_direct"/>
+                                    <field name="unit_sale_price"/>
+                                    <field name="subtotal_cost_direct" readonly="1"/>
+                                    <field name="subtotal_sale" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Totaux">
+                            <group>
+                                <field name="amount_cost_direct" readonly="1"/>
+                                <field name="amount_sale" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="Chatter">
+                            <field name="message_follower_ids" invisible="1"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_btp_devis" model="ir.actions.act_window">
+        <field name="name">Devis (DQE)</field>
+        <field name="res_model">btp.devis</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
