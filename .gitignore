@@ -4,7 +4,9 @@ odoo-19.0+e.20260331/
 # Local folders/files in this workspace
 ipres_css_pages/
 liasse_pages/
-*.png
+debug_*.png
+liasse_sample-*.png
+aout_preview.png
 *.log
 wise_lab_liasse*.txt
 
