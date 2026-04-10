@@ -5,6 +5,13 @@
     "summary": "Application BTP Sénégal (chantier, étude de prix, budget) - OHADA-ready",
     "author": "MMLY",
     "license": "OPL-1",
+    "images": [
+        "static/description/cover.png",
+        "static/description/screenshot_01_menu.png",
+        "static/description/screenshot_02_chantier.png",
+        "static/description/screenshot_03_devis.png",
+        "static/description/screenshot_04_budget.png",
+    ],
     "depends": [
         "mail",
         "analytic",
@@ -37,4 +44,3 @@
     "application": True,
     "installable": True,
 }
-
