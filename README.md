@@ -14,6 +14,4 @@ Le `docker-compose.yaml` expose Odoo sur `http://localhost:8069` et monte les ad
 
 Dans Odoo (base `admin`), installe :
 
-- **BTP - Base**
-- **BTP - Étude de prix**
-- **BTP - Budget chantier**
+- **BTP SENEGAL** (application unique)
