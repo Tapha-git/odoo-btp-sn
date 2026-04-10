@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
+    <!-- 10 ouvrages + versions validées + sous-détails -->
     <record id="ouvrage_fondations" model="btp.ouvrage">
         <field name="code">OUV-001</field>
         <field name="name">Fondations (lot gros œuvre)</field>
@@ -17,37 +18,418 @@
     <record id="ouvrage_fondations_l1" model="btp.ouvrage.sousdetail">
         <field name="version_id" ref="btp_senegal.ouvrage_fondations_v1"/>
         <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
-        <field name="name">Ciment + agrégats (estimation)</field>
-        <field name="uom_id" ref="uom.product_uom_unit"/>
-        <field name="quantity">1</field>
-        <field name="unit_cost">3500000</field>
+        <field name="product_id" ref="btp_senegal.prod_ciment"/>
+        <field name="name">Ciment (fondations)</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="quantity">4500</field>
+        <field name="unit_cost">300</field>
     </record>
     <record id="ouvrage_fondations_l2" model="btp.ouvrage.sousdetail">
         <field name="version_id" ref="btp_senegal.ouvrage_fondations_v1"/>
         <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
         <field name="name">Main-d'œuvre (estimation)</field>
         <field name="uom_id" ref="uom.product_uom_unit"/>
-        <field name="quantity">1</field>
-        <field name="unit_cost">1200000</field>
+        <field name="quantity">22</field>
+        <field name="unit_cost">60000</field>
     </record>
     <record id="ouvrage_fondations_l3" model="btp.ouvrage.sousdetail">
         <field name="version_id" ref="btp_senegal.ouvrage_fondations_v1"/>
         <field name="resource_nature_id" ref="btp_senegal.nature_engins"/>
-        <field name="name">Location engin (estimation)</field>
+        <field name="product_id" ref="btp_senegal.prod_echafaudage"/>
+        <field name="name">Location matériel (estimation)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">10</field>
+        <field name="unit_cost">20000</field>
+    </record>
+
+    <record id="ouvrage_beton" model="btp.ouvrage">
+        <field name="code">OUV-002</field>
+        <field name="name">Béton armé (poteaux/poutres)</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+    </record>
+    <record id="ouvrage_beton_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_beton"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">6</field>
+        <field name="overhead_general_pct">8</field>
+        <field name="risk_pct">3</field>
+        <field name="margin_pct">15</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_beton_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_beton_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_gravier"/>
+        <field name="name">Gravier</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="quantity">12</field>
+        <field name="unit_cost">28000</field>
+    </record>
+    <record id="ouvrage_beton_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_beton_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_sable"/>
+        <field name="name">Sable</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="quantity">10</field>
+        <field name="unit_cost">22000</field>
+    </record>
+    <record id="ouvrage_beton_l3" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_beton_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_fer12"/>
+        <field name="name">Fer Ø12</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">180</field>
+        <field name="unit_cost">4000</field>
+    </record>
+    <record id="ouvrage_beton_l4" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_beton_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
+        <field name="name">Main-d'œuvre</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">35</field>
+        <field name="unit_cost">65000</field>
+    </record>
+
+    <record id="ouvrage_maconnerie" model="btp.ouvrage">
+        <field name="code">OUV-003</field>
+        <field name="name">Maçonnerie (murs en briques)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_maconnerie_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_maconnerie"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">5</field>
+        <field name="overhead_general_pct">6</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">12</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_maconnerie_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_maconnerie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_brique"/>
+        <field name="name">Briques</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">3500</field>
+        <field name="unit_cost">260</field>
+    </record>
+    <record id="ouvrage_maconnerie_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_maconnerie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_ciment"/>
+        <field name="name">Ciment</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="quantity">1200</field>
+        <field name="unit_cost">300</field>
+    </record>
+    <record id="ouvrage_maconnerie_l3" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_maconnerie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
+        <field name="name">Main-d'œuvre</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">28</field>
+        <field name="unit_cost">55000</field>
+    </record>
+
+    <record id="ouvrage_enduits" model="btp.ouvrage">
+        <field name="code">OUV-004</field>
+        <field name="name">Enduits intérieurs</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_enduits_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_enduits"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">4</field>
+        <field name="overhead_general_pct">6</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">15</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_enduits_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_enduits_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_enduit"/>
+        <field name="name">Enduit</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">280</field>
+        <field name="unit_cost">3400</field>
+    </record>
+    <record id="ouvrage_enduits_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_enduits_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
+        <field name="name">Main-d'œuvre</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">18</field>
+        <field name="unit_cost">60000</field>
+    </record>
+
+    <record id="ouvrage_peinture" model="btp.ouvrage">
+        <field name="code">OUV-005</field>
+        <field name="name">Peinture intérieure</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_peinture_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_peinture"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">4</field>
+        <field name="overhead_general_pct">6</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">18</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_peinture_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_peinture_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_peinture"/>
+        <field name="name">Peinture</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">12</field>
+        <field name="unit_cost">40000</field>
+    </record>
+    <record id="ouvrage_peinture_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_peinture_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
+        <field name="name">Main-d'œuvre</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">12</field>
+        <field name="unit_cost">55000</field>
+    </record>
+
+    <record id="ouvrage_electricite" model="btp.ouvrage">
+        <field name="code">OUV-006</field>
+        <field name="name">Électricité (câblage + appareillage)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_electricite_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_electricite"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">3</field>
+        <field name="overhead_general_pct">5</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">20</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_electricite_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_electricite_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_cable"/>
+        <field name="name">Câble 2,5mm</field>
+        <field name="uom_id" ref="uom.product_uom_meter"/>
+        <field name="quantity">800</field>
+        <field name="unit_cost">300</field>
+    </record>
+    <record id="ouvrage_electricite_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_electricite_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_st"/>
+        <field name="name">Sous-traitance électricité</field>
         <field name="uom_id" ref="uom.product_uom_unit"/>
         <field name="quantity">1</field>
-        <field name="unit_cost">800000</field>
+        <field name="unit_cost">6500000</field>
+    </record>
+    <record id="ouvrage_electricite_l3" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_electricite_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_divers"/>
+        <field name="name">Divers (transport, petites fournitures)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost">350000</field>
+    </record>
+
+    <record id="ouvrage_plomberie" model="btp.ouvrage">
+        <field name="code">OUV-007</field>
+        <field name="name">Plomberie (réseaux + appareillages)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_plomberie_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_plomberie"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">3</field>
+        <field name="overhead_general_pct">5</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">18</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_plomberie_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_plomberie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_tube_pvc"/>
+        <field name="name">Tube PVC</field>
+        <field name="uom_id" ref="uom.product_uom_meter"/>
+        <field name="quantity">300</field>
+        <field name="unit_cost">1000</field>
+    </record>
+    <record id="ouvrage_plomberie_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_plomberie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_st"/>
+        <field name="name">Sous-traitance plomberie</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost">4200000</field>
+    </record>
+
+    <record id="ouvrage_carrelage" model="btp.ouvrage">
+        <field name="code">OUV-008</field>
+        <field name="name">Carrelage sols</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_carrelage_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_carrelage"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">4</field>
+        <field name="overhead_general_pct">6</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">16</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_carrelage_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_carrelage_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_carreau"/>
+        <field name="name">Carreaux</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1200</field>
+        <field name="unit_cost">1000</field>
+    </record>
+    <record id="ouvrage_carrelage_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_carrelage_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_ciment_colle"/>
+        <field name="name">Ciment colle</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">80</field>
+        <field name="unit_cost">4000</field>
+    </record>
+    <record id="ouvrage_carrelage_l3" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_carrelage_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
+        <field name="name">Main-d'œuvre</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">14</field>
+        <field name="unit_cost">60000</field>
+    </record>
+
+    <record id="ouvrage_menuiserie" model="btp.ouvrage">
+        <field name="code">OUV-009</field>
+        <field name="name">Menuiserie (portes/fenêtres)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_menuiserie_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_menuiserie"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">3</field>
+        <field name="overhead_general_pct">5</field>
+        <field name="risk_pct">2</field>
+        <field name="margin_pct">18</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_menuiserie_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_menuiserie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_porte"/>
+        <field name="name">Portes</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">18</field>
+        <field name="unit_cost">60000</field>
+    </record>
+    <record id="ouvrage_menuiserie_l2" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_menuiserie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_material"/>
+        <field name="product_id" ref="btp_senegal.prod_fenetre"/>
+        <field name="name">Fenêtres</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">24</field>
+        <field name="unit_cost">80000</field>
+    </record>
+    <record id="ouvrage_menuiserie_l3" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_menuiserie_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_mo"/>
+        <field name="name">Main-d'œuvre</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">10</field>
+        <field name="unit_cost">65000</field>
+    </record>
+
+    <record id="ouvrage_installation" model="btp.ouvrage">
+        <field name="code">OUV-010</field>
+        <field name="name">Installation de chantier</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+    </record>
+    <record id="ouvrage_installation_v1" model="btp.ouvrage.version">
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_installation"/>
+        <field name="name">V1</field>
+        <field name="overhead_site_pct">2</field>
+        <field name="overhead_general_pct">4</field>
+        <field name="risk_pct">1</field>
+        <field name="margin_pct">10</field>
+        <field name="state">validated</field>
+    </record>
+    <record id="ouvrage_installation_l1" model="btp.ouvrage.sousdetail">
+        <field name="version_id" ref="btp_senegal.ouvrage_installation_v1"/>
+        <field name="resource_nature_id" ref="btp_senegal.nature_divers"/>
+        <field name="name">Base vie / signalisation / divers</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost">1500000</field>
     </record>
 
     <record id="devis_demo_1" model="btp.devis">
         <field name="partner_id" ref="btp_senegal.partner_maitre_ouvrage_demo"/>
-        <field name="state">draft</field>
+        <field name="chantier_id" ref="btp_senegal.chantier_demo_1"/>
+        <field name="state">validated</field>
     </record>
     <record id="devis_demo_1_l1" model="btp.devis.line">
         <field name="devis_id" ref="btp_senegal.devis_demo_1"/>
         <field name="ouvrage_id" ref="btp_senegal.ouvrage_fondations"/>
         <field name="ouvrage_version_id" ref="btp_senegal.ouvrage_fondations_v1"/>
         <field name="name">Fondations (lot gros œuvre)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+    </record>
+    <record id="devis_demo_1_l2" model="btp.devis.line">
+        <field name="devis_id" ref="btp_senegal.devis_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_beton"/>
+        <field name="ouvrage_version_id" ref="btp_senegal.ouvrage_beton_v1"/>
+        <field name="name">Béton armé (poteaux/poutres)</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="quantity">85</field>
+    </record>
+    <record id="devis_demo_1_l3" model="btp.devis.line">
+        <field name="devis_id" ref="btp_senegal.devis_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_maconnerie"/>
+        <field name="ouvrage_version_id" ref="btp_senegal.ouvrage_maconnerie_v1"/>
+        <field name="name">Maçonnerie (murs en briques)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+    </record>
+    <record id="devis_demo_1_l4" model="btp.devis.line">
+        <field name="devis_id" ref="btp_senegal.devis_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_electricite"/>
+        <field name="ouvrage_version_id" ref="btp_senegal.ouvrage_electricite_v1"/>
+        <field name="name">Électricité (câblage + appareillage)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+    </record>
+
+    <record id="devis_demo_2" model="btp.devis">
+        <field name="partner_id" ref="btp_senegal.partner_maitre_ouvrage_demo_2"/>
+        <field name="chantier_id" ref="btp_senegal.chantier_demo_2"/>
+        <field name="state">review</field>
+    </record>
+    <record id="devis_demo_2_l1" model="btp.devis.line">
+        <field name="devis_id" ref="btp_senegal.devis_demo_2"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_enduits"/>
+        <field name="ouvrage_version_id" ref="btp_senegal.ouvrage_enduits_v1"/>
+        <field name="name">Enduits intérieurs</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+    </record>
+    <record id="devis_demo_2_l2" model="btp.devis.line">
+        <field name="devis_id" ref="btp_senegal.devis_demo_2"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_peinture"/>
+        <field name="ouvrage_version_id" ref="btp_senegal.ouvrage_peinture_v1"/>
+        <field name="name">Peinture intérieure</field>
         <field name="uom_id" ref="uom.product_uom_unit"/>
         <field name="quantity">1</field>
     </record>

@@ -21,6 +21,11 @@
         <field name="code">ST</field>
         <field name="name">Sous-traitance</field>
     </record>
+    <record id="cost_cat_divers" model="btp.cost.category">
+        <field name="sequence">50</field>
+        <field name="code">DIV</field>
+        <field name="name">Frais divers</field>
+    </record>
 
     <record id="nature_material" model="btp.resource.nature">
         <field name="sequence">10</field>
@@ -46,31 +51,421 @@
         <field name="name">Sous-traitance</field>
         <field name="cost_category_id" ref="btp_senegal.cost_cat_st"/>
     </record>
+    <record id="nature_divers" model="btp.resource.nature">
+        <field name="sequence">50</field>
+        <field name="code">DIV</field>
+        <field name="name">Frais divers</field>
+        <field name="cost_category_id" ref="btp_senegal.cost_cat_divers"/>
+    </record>
 
     <record id="geo_dakar" model="btp.geo.zone">
         <field name="code">DK</field>
         <field name="name">Dakar</field>
+    </record>
+    <record id="geo_thies" model="btp.geo.zone">
+        <field name="code">TH</field>
+        <field name="name">Thiès</field>
+    </record>
+    <record id="geo_saint_louis" model="btp.geo.zone">
+        <field name="code">SL</field>
+        <field name="name">Saint-Louis</field>
     </record>
     <record id="market_public" model="btp.market.type">
         <field name="sequence">10</field>
         <field name="code">PUB</field>
         <field name="name">Marché public</field>
     </record>
+    <record id="market_prive" model="btp.market.type">
+        <field name="sequence">20</field>
+        <field name="code">PRV</field>
+        <field name="name">Marché privé</field>
+    </record>
 
     <!-- Partenaires de démo -->
     <record id="partner_maitre_ouvrage_demo" model="res.partner">
         <field name="name">Société Immobilière Sénégal (Démo)</field>
         <field name="is_company">1</field>
+        <field name="street">Avenue Cheikh Anta Diop</field>
+        <field name="city">Dakar</field>
+        <field name="country_id" ref="base.sn"/>
+        <field name="phone">+221 33 000 00 00</field>
+        <field name="email">contact@sis-demo.sn</field>
+    </record>
+    <record id="partner_maitre_oeuvre_demo" model="res.partner">
+        <field name="name">Cabinet d'Architecture (Démo)</field>
+        <field name="is_company">1</field>
+        <field name="street">Plateau</field>
+        <field name="city">Dakar</field>
+        <field name="country_id" ref="base.sn"/>
+        <field name="phone">+221 33 111 11 11</field>
+        <field name="email">contact@archi-demo.sn</field>
+    </record>
+    <record id="partner_bureau_controle_demo" model="res.partner">
+        <field name="name">Bureau de Contrôle (Démo)</field>
+        <field name="is_company">1</field>
+        <field name="street">Point E</field>
+        <field name="city">Dakar</field>
+        <field name="country_id" ref="base.sn"/>
+        <field name="phone">+221 33 222 22 22</field>
+        <field name="email">controle@demo.sn</field>
+    </record>
+    <record id="partner_fournisseur_1" model="res.partner">
+        <field name="name">Fournisseur Matériaux Dakar (Démo)</field>
+        <field name="is_company">1</field>
+        <field name="supplier_rank">1</field>
+        <field name="city">Dakar</field>
+        <field name="country_id" ref="base.sn"/>
+    </record>
+    <record id="partner_fournisseur_2" model="res.partner">
+        <field name="name">Fournisseur Béton Thiès (Démo)</field>
+        <field name="is_company">1</field>
+        <field name="supplier_rank">1</field>
+        <field name="city">Thiès</field>
+        <field name="country_id" ref="base.sn"/>
+    </record>
+    <record id="partner_sous_traitant_1" model="res.partner">
+        <field name="name">Sous-traitant Électricité (Démo)</field>
+        <field name="is_company">1</field>
+        <field name="supplier_rank">1</field>
+        <field name="city">Dakar</field>
+        <field name="country_id" ref="base.sn"/>
+    </record>
+
+    <!-- Articles matériaux (20) -->
+    <record id="prod_tmpl_ciment" model="product.template">
+        <field name="name">Ciment CPJ 45</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="list_price">350</field>
+        <field name="standard_price">300</field>
+    </record>
+    <record id="prod_ciment" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_ciment"/>
+    </record>
+
+    <record id="prod_tmpl_sable" model="product.template">
+        <field name="name">Sable (m3)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="uom_po_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="list_price">25000</field>
+        <field name="standard_price">22000</field>
+    </record>
+    <record id="prod_sable" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_sable"/>
+    </record>
+
+    <record id="prod_tmpl_gravier" model="product.template">
+        <field name="name">Gravier (m3)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="uom_po_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="list_price">32000</field>
+        <field name="standard_price">28000</field>
+    </record>
+    <record id="prod_gravier" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_gravier"/>
+    </record>
+
+    <record id="prod_tmpl_fer12" model="product.template">
+        <field name="name">Fer à béton Ø12 (barre)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">4500</field>
+        <field name="standard_price">4000</field>
+    </record>
+    <record id="prod_fer12" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_fer12"/>
+    </record>
+
+    <record id="prod_tmpl_fer8" model="product.template">
+        <field name="name">Fer à béton Ø8 (barre)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">2500</field>
+        <field name="standard_price">2200</field>
+    </record>
+    <record id="prod_fer8" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_fer8"/>
+    </record>
+
+    <record id="prod_tmpl_brique" model="product.template">
+        <field name="name">Brique creuse 15</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">300</field>
+        <field name="standard_price">260</field>
+    </record>
+    <record id="prod_brique" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_brique"/>
+    </record>
+
+    <record id="prod_tmpl_peinture" model="product.template">
+        <field name="name">Peinture acrylique (seau 20L)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">45000</field>
+        <field name="standard_price">40000</field>
+    </record>
+    <record id="prod_peinture" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_peinture"/>
+    </record>
+
+    <record id="prod_tmpl_cable" model="product.template">
+        <field name="name">Câble électrique 2,5mm (m)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_meter"/>
+        <field name="uom_po_id" ref="uom.product_uom_meter"/>
+        <field name="list_price">350</field>
+        <field name="standard_price">300</field>
+    </record>
+    <record id="prod_cable" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_cable"/>
+    </record>
+
+    <record id="prod_tmpl_tube_pvc" model="product.template">
+        <field name="name">Tube PVC Ø40 (m)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_meter"/>
+        <field name="uom_po_id" ref="uom.product_uom_meter"/>
+        <field name="list_price">1200</field>
+        <field name="standard_price">1000</field>
+    </record>
+    <record id="prod_tube_pvc" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_tube_pvc"/>
+    </record>
+
+    <record id="prod_tmpl_carreau" model="product.template">
+        <field name="name">Carreau 60x60</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">1200</field>
+        <field name="standard_price">1000</field>
+    </record>
+    <record id="prod_carreau" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_carreau"/>
+    </record>
+
+    <record id="prod_tmpl_ciment_colle" model="product.template">
+        <field name="name">Ciment colle (sac 25kg)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">4500</field>
+        <field name="standard_price">4000</field>
+    </record>
+    <record id="prod_ciment_colle" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_ciment_colle"/>
+    </record>
+
+    <record id="prod_tmpl_bois_coffrage" model="product.template">
+        <field name="name">Bois de coffrage</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">8000</field>
+        <field name="standard_price">7000</field>
+    </record>
+    <record id="prod_bois_coffrage" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_bois_coffrage"/>
+    </record>
+
+    <record id="prod_tmpl_fil_attache" model="product.template">
+        <field name="name">Fil d'attache (kg)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="list_price">2000</field>
+        <field name="standard_price">1800</field>
+    </record>
+    <record id="prod_fil_attache" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_fil_attache"/>
+    </record>
+
+    <record id="prod_tmpl_clou" model="product.template">
+        <field name="name">Clou (kg)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="list_price">1500</field>
+        <field name="standard_price">1300</field>
+    </record>
+    <record id="prod_clou" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_clou"/>
+    </record>
+
+    <record id="prod_tmpl_porte" model="product.template">
+        <field name="name">Porte intérieure</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">65000</field>
+        <field name="standard_price">60000</field>
+    </record>
+    <record id="prod_porte" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_porte"/>
+    </record>
+
+    <record id="prod_tmpl_fenetre" model="product.template">
+        <field name="name">Fenêtre aluminium</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">85000</field>
+        <field name="standard_price">80000</field>
+    </record>
+    <record id="prod_fenetre" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_fenetre"/>
+    </record>
+
+    <record id="prod_tmpl_plomberie" model="product.template">
+        <field name="name">Kit plomberie (lot)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">120000</field>
+        <field name="standard_price">110000</field>
+    </record>
+    <record id="prod_plomberie" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_plomberie"/>
+    </record>
+
+    <record id="prod_tmpl_eclairage" model="product.template">
+        <field name="name">Luminaire LED</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">9500</field>
+        <field name="standard_price">8500</field>
+    </record>
+    <record id="prod_eclairage" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_eclairage"/>
+    </record>
+
+    <record id="prod_tmpl_interrupteur" model="product.template">
+        <field name="name">Interrupteur</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">900</field>
+        <field name="standard_price">800</field>
+    </record>
+    <record id="prod_interrupteur" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_interrupteur"/>
+    </record>
+
+    <record id="prod_tmpl_prises" model="product.template">
+        <field name="name">Prise 2P+T</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">1100</field>
+        <field name="standard_price">1000</field>
+    </record>
+    <record id="prod_prises" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_prises"/>
+    </record>
+
+    <record id="prod_tmpl_enduit" model="product.template">
+        <field name="name">Enduit (sac 25kg)</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">3800</field>
+        <field name="standard_price">3400</field>
+    </record>
+    <record id="prod_enduit" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_enduit"/>
+    </record>
+
+    <record id="prod_tmpl_platre" model="product.template">
+        <field name="name">Plâtre</field>
+        <field name="type">consu</field>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="list_price">600</field>
+        <field name="standard_price">520</field>
+    </record>
+    <record id="prod_platre" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_platre"/>
+    </record>
+
+    <record id="prod_tmpl_echafaudage" model="product.template">
+        <field name="name">Location échafaudage (jour)</field>
+        <field name="type">service</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="list_price">25000</field>
+        <field name="standard_price">20000</field>
+    </record>
+    <record id="prod_echafaudage" model="product.product">
+        <field name="product_tmpl_id" ref="btp_senegal.prod_tmpl_echafaudage"/>
     </record>
 
     <!-- Chantier de démo -->
+    <record id="project_demo_1" model="project.project">
+        <field name="name">PROJET - Immeuble R+3 - Point E (Démo)</field>
+    </record>
     <record id="chantier_demo_1" model="btp.chantier">
         <field name="name">Construction Immeuble R+3 - Point E</field>
         <field name="partner_id" ref="btp_senegal.partner_maitre_ouvrage_demo"/>
+        <field name="maitre_oeuvre_id" ref="btp_senegal.partner_maitre_oeuvre_demo"/>
+        <field name="bureau_controle_id" ref="btp_senegal.partner_bureau_controle_demo"/>
         <field name="geo_zone_id" ref="btp_senegal.geo_dakar"/>
+        <field name="address">Point E, Dakar</field>
         <field name="market_type_id" ref="btp_senegal.market_public"/>
+        <field name="date_start_planned">2026-01-15</field>
+        <field name="date_end_planned">2026-12-31</field>
+        <field name="date_start_actual">2026-02-01</field>
+        <field name="conducteur_travaux_id" ref="base.user_admin"/>
+        <field name="chef_chantier_id" ref="base.user_admin"/>
+        <field name="project_id" ref="btp_senegal.project_demo_1"/>
         <field name="amount_contract">250000000</field>
         <field name="budget_initial">200000000</field>
+        <field name="budget_revised">210000000</field>
+        <field name="progress_rate">35</field>
+        <field name="margin_expected">35000000</field>
+        <field name="margin_real">18000000</field>
+        <field name="cashflow_expected">120000000</field>
+        <field name="cashflow_real">65000000</field>
         <field name="state">study</field>
+    </record>
+
+    <record id="project_demo_2" model="project.project">
+        <field name="name">PROJET - Réhabilitation École (Démo)</field>
+    </record>
+    <record id="partner_maitre_ouvrage_demo_2" model="res.partner">
+        <field name="name">Collectivité Locale (Démo)</field>
+        <field name="is_company">1</field>
+        <field name="city">Thiès</field>
+        <field name="country_id" ref="base.sn"/>
+        <field name="phone">+221 33 333 33 33</field>
+        <field name="email">marche@collectivite-demo.sn</field>
+    </record>
+    <record id="chantier_demo_2" model="btp.chantier">
+        <field name="name">Réhabilitation École - Thiès</field>
+        <field name="partner_id" ref="btp_senegal.partner_maitre_ouvrage_demo_2"/>
+        <field name="maitre_oeuvre_id" ref="btp_senegal.partner_maitre_oeuvre_demo"/>
+        <field name="bureau_controle_id" ref="btp_senegal.partner_bureau_controle_demo"/>
+        <field name="geo_zone_id" ref="btp_senegal.geo_thies"/>
+        <field name="address">Centre-ville, Thiès</field>
+        <field name="market_type_id" ref="btp_senegal.market_public"/>
+        <field name="date_start_planned">2026-03-01</field>
+        <field name="date_end_planned">2026-08-31</field>
+        <field name="conducteur_travaux_id" ref="base.user_admin"/>
+        <field name="chef_chantier_id" ref="base.user_admin"/>
+        <field name="project_id" ref="btp_senegal.project_demo_2"/>
+        <field name="amount_contract">60000000</field>
+        <field name="budget_initial">48000000</field>
+        <field name="progress_rate">10</field>
+        <field name="margin_expected">8000000</field>
+        <field name="cashflow_expected">25000000</field>
+        <field name="state">draft</field>
     </record>
 </odoo>

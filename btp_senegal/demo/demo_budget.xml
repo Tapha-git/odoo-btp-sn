@@ -2,7 +2,70 @@
 <odoo noupdate="1">
     <record id="budget_demo_1" model="btp.budget">
         <field name="chantier_id" ref="btp_senegal.chantier_demo_1"/>
+        <field name="devis_id" ref="btp_senegal.devis_demo_1"/>
+        <field name="type">initial</field>
+        <field name="state">validated</field>
+    </record>
+
+    <record id="budget_demo_1_l1" model="btp.budget.line">
+        <field name="budget_id" ref="btp_senegal.budget_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_fondations"/>
+        <field name="name">Fondations (lot gros œuvre)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost_direct">8500000</field>
+        <field name="unit_sale_price">11000000</field>
+    </record>
+    <record id="budget_demo_1_l2" model="btp.budget.line">
+        <field name="budget_id" ref="btp_senegal.budget_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_beton"/>
+        <field name="name">Béton armé (poteaux/poutres)</field>
+        <field name="uom_id" ref="uom.product_uom_cubic_meter"/>
+        <field name="quantity">85</field>
+        <field name="unit_cost_direct">125000</field>
+        <field name="unit_sale_price">165000</field>
+    </record>
+    <record id="budget_demo_1_l3" model="btp.budget.line">
+        <field name="budget_id" ref="btp_senegal.budget_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_maconnerie"/>
+        <field name="name">Maçonnerie (murs en briques)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost_direct">4200000</field>
+        <field name="unit_sale_price">5400000</field>
+    </record>
+    <record id="budget_demo_1_l4" model="btp.budget.line">
+        <field name="budget_id" ref="btp_senegal.budget_demo_1"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_electricite"/>
+        <field name="name">Électricité (câblage + appareillage)</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost_direct">7300000</field>
+        <field name="unit_sale_price">9200000</field>
+    </record>
+
+    <record id="budget_demo_2" model="btp.budget">
+        <field name="chantier_id" ref="btp_senegal.chantier_demo_2"/>
+        <field name="devis_id" ref="btp_senegal.devis_demo_2"/>
         <field name="type">initial</field>
         <field name="state">draft</field>
+    </record>
+    <record id="budget_demo_2_l1" model="btp.budget.line">
+        <field name="budget_id" ref="btp_senegal.budget_demo_2"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_enduits"/>
+        <field name="name">Enduits intérieurs</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost_direct">2100000</field>
+        <field name="unit_sale_price">2800000</field>
+    </record>
+    <record id="budget_demo_2_l2" model="btp.budget.line">
+        <field name="budget_id" ref="btp_senegal.budget_demo_2"/>
+        <field name="ouvrage_id" ref="btp_senegal.ouvrage_peinture"/>
+        <field name="name">Peinture intérieure</field>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="quantity">1</field>
+        <field name="unit_cost_direct">1250000</field>
+        <field name="unit_sale_price">1650000</field>
     </record>
 </odoo>
